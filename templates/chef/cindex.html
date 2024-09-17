@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            overflow-y: auto;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h4 class="text-center py-3">Chef Dashboard</h4>
+        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="/c_profile"><i class="fas fa-users"></i>  Profile</a>
+        <a href="#"><i class="fas fa-users"></i>  Foods</a>
+        <a href="#"><i class="fas fa-user-tie"></i> Bookings</a>
+{#        <a href="#"><i class="fas fa-book"></i> Feedback</a>#}
+{#        <a href="#"><i class="fas fa-chart-line"></i> Reports</a>#}
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h3>Welcome,  {{ data.name }}</h3>
+            <button class="btn btn-primary"><i class="fas fa-bell"></i> Notifications</button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5>
+                        <p class="card-text">{{ request.session.user }}</p>
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-md-3">#}
+{#                <div class="card text-white bg-success mb-3">#}
+{#                    <div class="card-body">#}
+{#                        <h5 class="card-title">Active Chefs</h5>#}
+{#                        <p class="card-text">{{ request.session.cccount }}</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Bookings</h5>
+                        <p class="card-text">75</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Notifications</h5>
+                        <p class="card-text">10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Table -->
+{#        <div class="card">#}
+{#            <div class="card-header">#}
+{#                User List#}
+{#            </div>#}
+{#            <div class="card-body">#}
+{#                <table class="table table-striped">#}
+{#                    <thead>#}
+{#                        <tr>#}
+{#                            <th>#</th>#}
+{#                            <th>Name</th>#}
+{#                            <th>Email</th>#}
+{#                            <th>Role</th>#}
+{#                            <th>Actions</th>#}
+{#                        </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                        <tr>#}
+{#                            <td>1</td>#}
+{#                            <td>John Doe</td>#}
+{#                            <td>john@example.com</td>#}
+{#                            <td>User</td>#}
+{#                            <td>#}
+{#                                <button class="btn btn-sm btn-primary">Edit</button>#}
+{#                                <button class="btn btn-sm btn-danger">Delete</button>#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <!-- Repeat rows as needed -->#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#        </div>#}
+
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

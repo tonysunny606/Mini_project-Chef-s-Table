@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Awesome Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- css files -->
+    <link rel="stylesheet" href="../static/login/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../static/login/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,vietnamese" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+{#    <div data-vide-bg="../static/login/video/social2">#}
+    <div style="background-image: url('../static/login/video/bg.jpg')">
+        <div class="center-container">
+            <!--header-->
+            <div class="header-w3l">
+                <h1>Login Form</h1>
+            </div>
+            <!--//header-->
+            <!--main-->
+            <div class="main-content-agile">
+                <div class="wthree-pro">
+                    <h2>Login Now</h2>
+                </div>
+                <div class="sub-main-w3">
+                    <!-- Error message placeholder -->
+                    <div id="error-message" style="color: red; display: none;"></div>
+
+                    <form id="login-form" action="/logincode" method="post">
+                        <input placeholder="UserName" name="mail" type="email" required="">
+                        <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input placeholder="Password" name="Password" type="password" required>
+                        <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                        <div class="rem-w3">
+                            &nbsp; &nbsp; &nbsp;  <a href="/register">User &nbsp; &nbsp; &nbsp;  </a>   &nbsp; &nbsp; &nbsp;
+                            <a href="/registerchef">Chef &nbsp; &nbsp; &nbsp;  </a> <a href="">Register? &nbsp; &nbsp; &nbsp;  </a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="navbar-right social-icons">
+                            <!-- Social icons can be included here if needed -->
+                        </div>
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+            <!--//main-->
+            <!--footer-->
+            <div class="footer">
+                <p>&copy; 2024 Awesome Login Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+            </div>
+            <!--//footer-->
+        </div>
+    </div>
+    <!-- js -->
+    <script type="text/javascript" src="../static/login/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/login/js/jquery.vide.min.js"></script>
+    <!-- //js -->
+    <!-- Add custom JS to handle the error message -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check for error query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorMessage = urlParams.get('error');
+            if (errorMessage === 'invalid') {
+                document.getElementById('error-message').textContent = 'Invalid username or password';
+                document.getElementById('error-message').style.display = 'block';
+            }
+            else if (errorMessage === 'blocked')
+            {
+                 document.getElementById('error-message').textContent = 'Account Blocked for some reason';
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'admin/aindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Chefs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Chefs List</h2>
+        <!-- Loop through each chef and display their details -->
+        {% for chef in data %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    {% if chef.image %}
+                        <img src="{{ chef.image.url }}" class="card-img" alt="{{ chef.name }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/150" class="card-img" alt="No Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ chef.name }}</h5>
+                        <p class="card-text"><strong>Gender:</strong> {{ chef.gender }}</p>
+                        <p class="card-text"><strong>Place:</strong> {{ chef.place }}</p>
+                        <p class="card-text"><strong>Qualification:</strong> {{ chef.Qualification }}</p>
+                        <p class="card-text"><strong>Experience:</strong> {{ chef.Experience }} years</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ chef.phone }}</p>
+                        <p class="card-text"><strong>Email:</strong> <a href="mailto:{{ chef.email }}">{{ chef.email }}</a></p>
+                        <p class="card-text"><strong>Status:</strong> {{ chef.LOGIN.type}}</p>
+                        {% if chef.LOGIN.type == 'pending' %}
+                        <a href="/approve_chef/{{ chef.LOGIN.id}}" class="btn btn-success">Approve</a>
+                        <a href="/reject_chef/{{ chef.LOGIN.id}}" class="btn btn-danger">Reject</a>
+                            {% else %}
+                             <a href="/history_chef/{{ chef.id}}" class="btn btn-success">History</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No chefs available.</p>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

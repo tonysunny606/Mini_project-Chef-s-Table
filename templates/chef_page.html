@@ -1,0 +1,142 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef Booking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .hero-section {
+            background-image: url('../static/assets/Home/Busy Kitchen Scene.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-book {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .btn-book:hover {
+            transform: scale(1.1);
+        }
+
+        .testimonials {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero-section animate__animated animate__fadeIn">
+        <div class="hero-content">
+            <h1 class="display-4 animate__animated animate__zoomIn">Book a Chef for Your Home</h1>
+            <p class="lead animate__animated animate__fadeInUp">Experience gourmet dining in the comfort of your home.</p>
+            <a href="login" class="btn btn-primary btn-lg btn-book animate__animated animate__bounceIn">Let's Begin </a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="container py-5">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/assets/Home/food.jpg" class="card-img-top" alt="Feature 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Personalized Menus</h5>
+                        <p class="card-text">Create your own menu or choose from a variety of options.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/assets/Home/chef_image.jpg" class="card-img-top" alt="Feature 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Expert Chefs</h5>
+                        <p class="card-text">Professional chefs with experience in diverse cuisines.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/assets/Home/book.jpg" class="card-img-top" alt="Feature 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Convenient Booking</h5>
+                        <p class="card-text">Simple and hassle-free booking process.<br> Come and Explore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container text-center">
+            <h2 class="mb-5">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"An amazing experience! The chef was professional and the food was outstanding."</p>
+                            <h5 class="card-title">- Kuttan Pillai</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Loved the personalized menu. It made our anniversary dinner special. Thanks Chef's Table"</p>
+                            <h5 class="card-title">- Thamarakshan</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Highly recommend! The convenience and quality were matched. For quality I recommend Chef Table"</p>
+                            <h5 class="card-title">- Mohanan</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <p>&copy; 2024 Chef Booking. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

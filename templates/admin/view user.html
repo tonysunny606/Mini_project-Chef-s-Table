@@ -1,0 +1,101 @@
+{% extends 'admin/aindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>User List</h2>
+        <!-- Loop through each user and display their details -->
+        {% for user in data %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    {% if user.image %}
+                        <img src="{{ user.image.url }}" class="card-img" alt="{{ user.name }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/150" class="card-img" alt="No Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.name }}</h5>
+                        <p class="card-text"><strong>Gender:</strong> {{ user.gender }}</p>
+                        <p class="card-text"><strong>Place:</strong> {{ user.place }}</p>
+                        <p class="card-text"><strong>Landmark:</strong> {{ user.landmark }}</p>
+                        <p class="card-text"><strong>House Number:</strong> {{ user.house_number }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+                        <p class="card-text"><strong>Email:</strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+
+                        <!-- Block/Unblock buttons -->
+                        {% if user.LOGIN.type == 'user' %}
+
+                            <a href="block_user/{{ user.LOGIN.id }}" class="btn btn-danger" >Block</a>
+
+                        {% else %}
+                            <a href="unblock_user/{{ user.LOGIN.id }}"  class="btn btn-success" >Unblock</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No users available.</p>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function blockUser(userId) {
+            // Send request to block user (replace with actual backend call)
+            console.log("Blocking user: " + userId);
+            // Example AJAX request
+            $.ajax({
+                url: '/block_user/', // Replace with your actual URL
+                method: 'POST',
+                data: {
+                    'user_id': userId,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    console.log('User blocked successfully');
+                    location.reload(); // Refresh the page to reflect changes
+                },
+                error: function(xhr) {
+                    console.log('Error blocking user');
+                }
+            });
+        }
+
+        function unblockUser(userId) {
+            // Send request to unblock user (replace with actual backend call)
+            console.log("Unblocking user: " + userId);
+            // Example AJAX request
+            $.ajax({
+                url: '/unblock_user/', // Replace with your actual URL
+                method: 'POST',
+                data: {
+                    'user_id': userId,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    console.log('User unblocked successfully');
+                    location.reload(); // Refresh the page to reflect changes
+                },
+                error: function(xhr) {
+                    console.log('Error unblocking user');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends 'chef/cindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .profile-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-container h2 {
+            margin: 0 0 10px;
+        }
+        .profile-detail {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="{{ profile.image.url }}" alt="Profile Picture">
+        <h2>{{ profile.name }}</h2>
+        <p class="profile-detail"><strong>Gender:</strong> {{ profile.gender }}</p>
+        <p class="profile-detail"><strong>Place:</strong> {{ profile.place }}</p>
+        <p class="profile-detail"><strong>Qualification:</strong> {{ profile.qualification }}</p>
+        <p class="profile-detail"><strong>Experience:</strong> {{ profile.experience }}</p>
+        <p class="profile-detail"><strong>Phone:</strong> {{ profile.phone }}</p>
+        <p class="profile-detail"><strong>Email:</strong> <a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>
+    </div>
+</body>
+</html>
+{% endblock %}
