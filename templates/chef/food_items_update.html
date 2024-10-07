@@ -1,0 +1,105 @@
+{% extends 'chef/cindex.html' %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Cuisine for Table Booking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .booking-container {
+            margin-top: 50px;
+        }
+        .booking-form {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .form-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container booking-container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="booking-form">
+                    <h2 class="text-center form-heading">Food Items</h2>
+                    <form method="POST" action="/food_item_update" enctype="multipart/form-data">
+                        <!-- Dropdown for Cuisines -->
+                        <div class="mb-3">
+                            <label for="cuisine" class="form-label">Choose a Cuisine</label>
+                            <select class="form-select" id="cuisine" name="cuisine" required>
+                                <option selected >{{ i.Cuisine }}</option>
+                                <option value="italian">Italian</option>
+                                <option value="indian">Indian</option>
+                                <option value="chinese">Chinese</option>
+                                <option value="french">French</option>
+                                <option value="thai">Thai</option>
+                                <option value="mexican">Mexican</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="cuisine" class="form-label">Choose a Type</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="{{ i.Type }}">{{ i.Type }}</option>
+                                <option value="Soups & Beverages">Soups & Beverages</option>
+                                <option value="Starters">Starters</option>
+                                <option value="Main Course">main course</option>
+                                <option value="Desserts">Desserts</option>
+
+
+{#                                <option value="Soups & Beverages">Soups & Beverages</option>#}
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuisine" class="form-label">Choose a Meals</label>
+                            <select class="form-select" id="Meals" name="Meals" required>
+                                <option value="{{ i.Meals }}">{{ i.Meals }}</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Evening Snackes">Evening Snackes</option>
+                                <option value="Dinner">Dinner</option>
+
+
+{#                                <option value="Soups & Beverages">Soups & Beverages</option>#}
+
+                            </select>
+                        </div>
+                         <div class="mb-3">
+                            <label for="cuisine" class="form-label">Name</label>
+                            <input type="text" name="name" required pattern="[a-zA-Z 0-9]+" class="form-control" value="{{ i.Name }}">
+                        </div>  <div class="mb-3">
+                            <label for="cuisine" class="form-label">Details</label>
+                            <input type="text" name="details" required pattern="[a-zA-Z 0-9.,-]+" class="form-control" value="{{ i.Details }}" >
+                        </div>
+                         <div class="mb-3">
+                            <label for="cuisine" class="form-label">Price</label>
+                            <input type="number" name="price" required min="1" class="form-control" value="{{ i.Price }}">
+                        </div>
+                         <div class="mb-3">
+                            <label for="cuisine" class="form-label">Image</label>
+                            <input type="file" name="img"  accept="image/*">
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional if needed for interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

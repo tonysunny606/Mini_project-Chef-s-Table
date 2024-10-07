@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Chef</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        select, input[type="radio"], input[type="checkbox"] {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .meals label, .serving-time label, .burners label {
+            margin-right: 20px;
+            font-size: 16px;
+            font-weight: normal;
+        }
+        .meals input[type="radio"], .serving-time input[type="checkbox"], .burners input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .meals p, .serving-time p, .burners p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .help {
+            color: #007bff;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .help:hover {
+            color: #0056b3;
+        }
+        .proceed-btn {
+            background-color: #f6b800;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .proceed-btn:hover {
+            background-color: #e09f00;
+        }
+        /* Hover effects for form elements */
+        select:hover, .proceed-btn:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .proceed-btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+{#      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">#}
+    <style>
+        /* Initially hide the div */
+        .serving-time {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<form method="post" action="/BookNow_post">{% csrf_token %}
+
+    <div class="container">
+        <h2>Book a Chef</h2>
+
+        <div class="dropdown">
+            <label for="occasion">Select Occasion</label>
+            <select id="occasion" name="occasion">
+                {% for i in data1 %}
+                <option value="{{ i.id }}">{{ i.event }}</option>
+{#                <option value="house-party">House Party</option>#}
+{#                <option value="inviting-guests">Inviting Guests</option>#}
+{#                <option value="weekend-chill">Weekend Chill</option>#}
+{#                <option value="weekend-chill">House Party</option>#}
+{#                <option value="weekend-chill">House Warming </option>#}
+{#                <option value="weekend-chill">Bachelor Party</option>#}
+{#                <option value="weekend-chill">Other occsion</option>#}
+                {% endfor %}
+
+
+
+
+            </select>
+        </div>
+
+        <div class="dropdown">
+            <label for="date">Select Date</label>
+            <input type="date" name="date" required class="form-control" min="{{ d }}">
+            <input type="hidden" name="id" value="{{ data.id }}">
+                <!-- Add more options here -->
+            </input>
+        </div>
+
+        <div class="meals">
+            <p>Select Meals:</p>
+            <label><input type="checkbox" name="meal" id="bcb" value="Breakfast">Breakfast</label>
+            <label><input type="checkbox" name="meal"  id="lcb" value="Lunch">Lunch</label>
+
+            <label><input type="checkbox" name="meal"  id="dcb" value="Dinner">Dinner</label>
+        </div>
+
+        <div id="bt" class="serving-time">
+            <p><b>Breakfast Serving Time:</b></p>
+            <label><input type="radio" name="Breakfast" value="8 am onwards">8 am onwards</label>
+            <label><input type="radio" name="Breakfast"value="9 am onwards">9 am onwards</label>
+            <label><input type="radio" name="Breakfast"value="10 am onwards">10 am onwards</label>
+        </div>
+        <div id="lt" class="serving-time">
+            <p><b>Lunch Serving Time:</b></p>
+            <label><input type="radio" name="Lunch"value="12 pm onwards">12 pm onwards</label>
+            <label><input type="radio" name="Lunch"value="1 pm onwards">1 pm onwards</label>
+            <label><input type="radio" name="Lunch"value="2 pm onwards">2 pm onwards</label>
+        </div>
+        <div id="dt" class="serving-time">
+            <p><b>Dinner Serving Time:</b></p>
+            <label><input type="radio" name="Dinner" value="7 pm onwards">7 pm onwards</label>
+            <label><input type="radio" name="Dinner"value="8 pm onwards">8 pm onwards</label>
+            <label><input type="radio" name="Dinner"value="9 pm onwards">9 pm onwards</label>
+        </div>
+
+        <div class="burners">
+            <p><b>Number of Gas Burners in your Kitchen:</b></p>
+            <label><input type="radio" name="burners" >1 burner</label>
+            <label><input type="radio" name="burners" >2 burners</label>
+            <label><input type="radio" name="burners" >3 burners</label>
+            <label><input type="radio" name="burners" >4 burners</label>
+            <label><input type="radio" name="burners" >5 burners</label>
+            <label><input type="radio" name="burners" >6 burners</label>
+        </div>
+
+        <div class="footer">
+            <a href="tel:9004044234" class="help">Need help? Call on 9004044234</a>
+{#            <button class="proceed-btn">Proceed</button>#}
+            <input class="proceed-btn" type="submit" value="Proceed">
+        </div>
+    </div>
+</form>
+ <script>
+        document.getElementById('bcb').addEventListener('change', function() {
+            var toggleDiv = document.getElementById('bt');
+            if (this.checked) {
+                toggleDiv.style.display = 'block';  // Show the div when checked
+            } else {
+                toggleDiv.style.display = 'none';   // Hide the div when unchecked
+            }
+        }); document.getElementById('lcb').addEventListener('change', function() {
+            var toggleDiv = document.getElementById('lt');
+            if (this.checked) {
+                toggleDiv.style.display = 'block';  // Show the div when checked
+            } else {
+                toggleDiv.style.display = 'none';   // Hide the div when unchecked
+            }
+        }); document.getElementById('dcb').addEventListener('change', function() {
+            var toggleDiv = document.getElementById('dt');
+            if (this.checked) {
+                toggleDiv.style.display = 'block';  // Show the div when checked
+            } else {
+                toggleDiv.style.display = 'none';   // Hide the div when unchecked
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS (optional if needed for interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+{% extends 'chef/cindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .profile-container img {
+            max-width: 100%;
+
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-container h2 {
+            margin: 0 0 10px;
+        }
+        .profile-detail {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="/food_item_view_search">
+<div align="center">
+    <br/>
+    <table class="table">
+        <tr>
+            <td><input type="text" name="s"  class="form-control" placeholder="Search Name" value="{{ s }}"/></td>
+            <td><input type="submit" value="Search" class="btn btn-primary"></td>
+        </tr>
+    </table>
+    <br/>
+
+</div>
+</form>
+ <div class="row">
+ 
+
+{% for i in data %}
+    <div class="col-sm-4">
+    <div class="profile-container">
+        <img src="{{ i.Image.url }}" height="200" width="200" alt="Profile Picture">
+        <h2>{{ i.Name }}</h2>
+        <p class="profile-detail"><strong>Cuisine:</strong> {{ i.Cuisine }}</p>
+        <p class="profile-detail"><strong>Type:</strong> {{ i.Type }}</p>
+        <p class="profile-detail"><strong>Meals:</strong> {{ i.Meals }}</p>
+        <p class="profile-detail"><strong>Details:</strong> {{ i.Details }}</p>
+        <p class="profile-detail"><strong>Price:</strong> {{ i.Price }}</p>
+        <p class="profile-detail"><a href="/edit_fooditem/{{ i.id }}" class="btn btn-info">Edit</a> <a href="/delete_fooditem/{{ i.id }}"  class="btn btn-danger">Delete</a>  </p>
+
+    </div>
+    </div>
+{% endfor %}
+ </div>
+<div align="center">
+    <br/>
+    <br/>
+    <a href="/food_item_add" class="btn btn-primary">Add New</a>
+</div>
+</body>
+</html>
+{% endblock %}

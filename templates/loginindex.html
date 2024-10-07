@@ -16,21 +16,54 @@
     <!-- //css files -->
     <!-- web-fonts -->
     <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,vietnamese" rel="stylesheet">
-    <!-- //web-fonts -->
+    <!-- //web-fonts -->    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+      <style>
+
+    .navbar {
+      box-shadow: 0 4px 2px -2px gray;
+        color: transparent/* Optional shadow effect */
+    }
+  </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <div class="container">
+      <b><a class="navbar-brand" href="/" style="color: white">Chef's Table</a></b>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="/"style="color: white"><b>Home</b></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/#about"style="color: white;"><b>About</b></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#"style="color: white"><b>Gellary</b></a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="#"style="color: white; align-items: center"><b>Login</b></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 {#    <div data-vide-bg="../static/login/video/social2">#}
     <div style="background-image: url('../static/login/video/bg.jpg')">
         <div class="center-container">
             <!--header-->
             <div class="header-w3l">
-                <h1>Login Form</h1>
+{#                <h1>Login Form</h1>#}
             </div>
             <!--//header-->
             <!--main-->
             <div class="main-content-agile">
                 <div class="wthree-pro">
-                    <h2>Login Now</h2>
+                    <h2 style="text-align: center; font-style: italic">Login To Chef's Table</h2>
                 </div>
                 <div class="sub-main-w3">
                     <!-- Error message placeholder -->
@@ -43,7 +76,7 @@
                         <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                         <div class="rem-w3">
                             &nbsp; &nbsp; &nbsp;  <a href="/register">User &nbsp; &nbsp; &nbsp;  </a>   &nbsp; &nbsp; &nbsp;
-                            <a href="/registerchef">Chef &nbsp; &nbsp; &nbsp;  </a> <a href="">Register? &nbsp; &nbsp; &nbsp;  </a>
+                            <a href="/registerchef">Chef &nbsp; &nbsp; &nbsp;  </a> <a href="" style="cursor: pointer;text-decoration:none ">Register? &nbsp; &nbsp; &nbsp;  </a href="">
                             <div class="clear"></div>
                         </div>
                         <div class="navbar-right social-icons">
@@ -56,7 +89,7 @@
             <!--//main-->
             <!--footer-->
             <div class="footer">
-                <p>&copy; 2024 Awesome Login Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                <p style="text-align: center">&copy; 2024 Awesome Login Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
             </div>
             <!--//footer-->
         </div>
