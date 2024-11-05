@@ -40,5 +40,22 @@ urlpatterns = [
     path('edit_fooditem/<id>', views.edit_fooditem),
     path('food_item_update', views.food_item_update),
     path('Bookdishes', views.Bookdishes),
+    path('Order_dishes', views.Order_dishes),
+    path('chef_view_booking', views.chef_view_booking),
+    path('view_dishes_chef/<id>', views.view_dishes_chef),
+    path('view_booking_dishes_user/<id>', views.view_booking_dishes_user),
+    path('accept_booking', views.accept_booking),
+    path('reject_booking', views.reject_booking),
+    path('my_booking', views.my_booking),
+    path('my_booking_post', views.my_booking_post),
+    path('payment/<id>/<amt>',views.payment),
+    path('on_payment_success', views.on_payment_success),
+    # path('feedback/<id>', views.feedback),
+    path("add_feedback",views.add_feedback),
+    path("add_complaint", views.add_complaint),
+    path('complaint_user', views.complaint_user),
+    path('admin_view_report', views.admin_view_report),
+    path('chef_view_booking_search', views.chef_view_booking_search),
 
 ]
+

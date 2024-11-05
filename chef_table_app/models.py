@@ -48,10 +48,10 @@ class ScheduleTable(models.Model):
 class BookingTable(models.Model):
     CHEF = models.ForeignKey(ChefTable, on_delete=models.CASCADE)
     USER = models.ForeignKey(UserTable, on_delete=models.CASCADE)
-
     number_gas = models.CharField(max_length=50)
     Status = models.CharField(max_length=50)
-    Date = models.CharField(max_length=50)
+    Date = models.DateField()
+    num_mem = models.BigIntegerField()
     # Date = models.DateField()
 
 
@@ -63,10 +63,32 @@ class BookingTable1(models.Model):
 class BookingDetailsTable(models.Model):
     BOOKING = models.ForeignKey(BookingTable, on_delete=models.CASCADE)
     FOOD = models.ForeignKey(FoodTable, on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Price = models.IntegerField()
 #
 class Events(models.Model):
     event=models.CharField(max_length=100)
+
 #
+class Feedback(models.Model):
+    Feedback=models.CharField(max_length=100)
+    BOOKING = models.ForeignKey(BookingTable, on_delete=models.CASCADE)
+    rating = models.FloatField(default=0.0)  # Define the rating field
+    date = models.DateField(auto_now_add=True)  # Date field
+
+
+#
+class Complient(models.Model):
+    BOOKING = models.ForeignKey(BookingTable, on_delete=models.CASCADE)
+    Complient=models.CharField(max_length=100)
+    reply=models.CharField(max_length=100)
+    date_submitted = models.DateField(auto_now_add=True)  # Date of complaint submission
+    date_replied = models.DateField(null=True, blank=True)  # Optional reply date
+
+
+
+
+
 
 
 

@@ -98,11 +98,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-              <a class="nav-link" href="userhome"style="color: white"><b>Home</b></a>
+              <a class="nav-link" href="/userhome"style="color: white"><b>Home</b></a>
           </li>
             <li class="nav-item active">
-              <a class="nav-link" href="view_profile"style="color: white"><b>Profile</b></a>
+              <a class="nav-link" href="/view_profile"style="color: white"><b>Profile</b></a>
           </li>
+
+             <li class="nav-item active">
+              <a class="nav-link" href="/my_booking"style="color: white"><b>My Bookings</b></a>
+          </li>
+
 {#          <li class="nav-item">#}
 {#              <a class="nav-link" href="#about"style="color: white;"><b>Gallery</b></a>#}
 {#          </li>#}
@@ -242,7 +247,7 @@
                <p>        Place : {{ i.place }}</p>
                <p>Qualification : {{ i.Qualification }}</p>
                <p>   Experience : {{ i.Experience }}</p>
-                <a href="BookNow/{{ i.id }}">
+                <a href="BookNow/{{ i.id }}">view
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
               </a>
 

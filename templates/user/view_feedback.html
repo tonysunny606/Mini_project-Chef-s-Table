@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback and Rating</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .star-rating {
+            direction: rtl;
+            display: inline-block;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: lightgray;
+            cursor: pointer;
+        }
+
+        .star:hover,
+        .star:hover ~ .star {
+            color: gold;
+        }
+
+        .star.selected {
+            color: gold;
+        }
+
+        #rating {
+            font-weight: bold;
+        }
+
+        #feedbackForm {
+            margin-top: 20px;
+        }
+
+        #confirmation {
+            display: none; /* Hide confirmation initially */
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rate Your Experience!</h1>
+
+    <div class="star-rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <p>Your rating: <span id="rating">0</span></p>
+
+    <div id="feedbackForm">
+        <textarea id="feedback" rows="4" cols="50" placeholder="Enter your feedback here..."></textarea>
+        <br>
+        <button id="submitBtn">Submit Feedback</button>
+    </div>
+
+    <div id="confirmation">
+        <h2>Thank You for Your Feedback!</h2>
+        <p id="confirmationMessage"></p>
+    </div>
+
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const ratingDisplay = document.getElementById('rating');
+        const feedbackInput = document.getElementById('feedback');
+        const submitBtn = document.getElementById('submitBtn');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const confirmationDiv = document.getElementById('confirmation');
+
+        let rating = 0; // Initialize rating
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                rating = star.getAttribute('data-value');
+                ratingDisplay.textContent = rating;
+
+                // Remove selected class from all stars
+                stars.forEach(s => s.classList.remove('selected'));
+
+                // Add selected class to the clicked star and all previous stars
+                star.classList.add('selected');
+                let previousStar = star.previousElementSibling;
+                while (previousStar) {
+                    previousStar.classList.add('selected');
+                    previousStar = previousStar.previousElementSibling;
+                }
+            });
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const feedbackText = feedbackInput.value;
+
+            if (rating > 0 && feedbackText.trim() !== "") {
+                confirmationMessage.innerHTML = `You rated us <strong>${rating}</strong> stars. <br>Your feedback: <em>${feedbackText}</em>`;
+                confirmationDiv.style.display = 'block'; // Show confirmation message
+                feedbackInput.value = ""; // Clear feedback input
+                ratingDisplay.textContent = "0"; // Reset rating display
+                stars.forEach(s => s.classList.remove('selected')); // Reset stars
+                rating = 0; // Reset rating
+            } else {
+                alert("Please provide a rating and feedback before submitting.");
+            }
+        });
+    </script>
+</body>
+</html>

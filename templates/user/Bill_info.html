@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Receipt</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .bill-container {
+            width: 60%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e2e2;
+            max-width: 800px;
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin: 0;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            color: #555;
+            font-size: 16px;
+        }
+        .total-row {
+            background-color: #f9f9f9;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+        }
+        .footer-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+        .total-cell {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+            color: #333;
+        }
+        .bill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .bill-header .date, .bill-header .customer {
+            font-size: 16px;
+            color: #555;
+        }
+
+
+
+    </style>
+
+     <style>
+    .navbar {
+      box-shadow: 0 4px 2px -2px gray; /* Optional shadow effect */
+    }
+  </style>
+
+
+
+
+     <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Chef Table</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+
+    .navbar {
+      box-shadow: 0 4px 2px -2px gray; /* Optional shadow effect */
+    }
+  </style>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../static/userhome/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="../static/userhome/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- nice select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+  <!-- slidck slider -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css.map" integrity="undefined" crossorigin="anonymous" />
+
+
+  <!-- Custom styles for this template -->
+  <link href="../static/userhome/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../static/userhome/css/responsive.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="hero_area">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <div class="container">
+      <b><a class="navbar-brand" href="userhome" style="color: white">Chef's Table</a></b>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="userhome"style="color: white"><b>Home</b></a>
+          </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="view_profile"style="color: white"><b>Profile</b></a>
+          </li>
+{#          <li class="nav-item">#}
+{#              <a class="nav-link" href="#about"style="color: white;"><b>Gallery</b></a>#}
+{#          </li>#}
+          <li class="nav-item">
+              <a class="nav-link" href="userhome#about"style="color: white"><b>About Us</b></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#"style="color:white;"><b>Reviews</b></a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"style="color:white;"><b>Menu</b></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="userhome#ch"style="color: white"><b>Book now</b></a>
+          </li> <li class="nav-item">
+              <a class="nav-link" href="/"style="color: white"><b>Logout</b></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    <div class="bill-container">
+        <h2>Bill Receipt</h2>
+        <div class="bill-header">
+            <p class="date">Date: {{ bookinfo.Date }}</p>
+            <p class="customer">Customer: {{ bookinfo.USER.name }}<br><br><br>Chef: {{ bookinfo.CHEF.name }}</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+{#                    <th>Quantity</th>#}
+                    <th>Quantity</th>
+                    <th>Actual Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in bookmore %}
+                <tr>
+                    <td>{{ i.food }}</td>
+                   <td>{{ i.Count }}</td>
+                    <td>{{i.actualprice }}</td>
+                    <td>{{ i.total}}</td>
+                </tr>
+            {% endfor %}
+{#                <tr>#}
+{#                    <td>Product 2</td>#}
+{#                    <td>1</td>#}
+{#                    <td>$15.00</td>#}
+{#                    <td>$15.00</td>#}
+{#                </tr>#}
+                <tr class="total-row">
+                    <td colspan="3" class="total">Subtotal</td>
+                    <td class="total-cell">₹{{ grandtotal }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" class="total">Tax (5%)</td>
+                    <td class="total-cell">₹{{ gst }}</td>
+                </tr>
+{#                <tr class="total-row">#}
+{#                    <td colspan="3" class="total">Discount</td>#}
+{#                    <td class="total-cell">- $5.00</td>#}
+{#                </tr>#}
+                <tr class="total-row">
+                    <td colspan="3" class="total">Total</td>
+                    <td class="total-cell">₹{{ grandtotal_gst }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer-info">
+            <p>Thank you for your business!</p>
+            <p>Please come again.</p>
+        </div>
+    </div>
+
+</body>
+</html>

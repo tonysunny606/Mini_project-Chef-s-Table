@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dropdown with Images</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background: url('../../static/img/bg1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            padding-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight white overlay */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            border-bottom: 1px solid #eee;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between; /* Space evenly */
+            flex-wrap: wrap;
+        }
+
+        #t {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .col-md-4 {
+                flex: 0 0 30%; /* Adjust width for 3 cards per row */
+                max-width: 30%;
+            }
+        }
+    </style>
+
+     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .bill-container {
+            width: 60%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e2e2;
+            max-width: 800px;
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin: 0;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            color: #555;
+            font-size: 16px;
+        }
+        .total-row {
+            background-color: #f9f9f9;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+        }
+        .footer-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+        .total-cell {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+            color: #333;
+        }
+        .bill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .bill-header .date, .bill-header .customer {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color:#006400;">Selected Menu</h1>
+
+        <form method="post" action="/Order_dishes">
+
+<br/>
+        <div align="center">
+    <div class="bill-container">
+        <h2>Bill Receipt</h2>
+        <div class="bill-header">
+            <p class="date">Date: {{ bookinfo.Date }}</p>
+            <p class="customer">Customer: {{ bookinfo.USER.name }}<br><br><br>Chef: {{ bookinfo.CHEF.name }}</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Actual Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in bookmore %}
+                <tr>
+                    <td><img src="{{ i.im }}" width="100" height="100"/><br/> {{ i.food }}</td>
+{#                    <td>2</td>#}
+                    <td>{{ i.c }}</td>
+                    <td>{{i.actualprice }}</td>
+                    <td>{{ i.total}}</td>
+                </tr>
+            {% endfor %}
+{#                <tr>#}
+{#                    <td>Product 2</td>#}
+{#                    <td>1</td>#}
+{#                    <td>$15.00</td>#}
+{#                    <td>$15.00</td>#}
+{#                </tr>#}
+                <tr class="total-row">
+                    <td colspan="3" class="total">Subtotal</td>
+                    <td class="total-cell">₹{{ grandtotal }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" class="total">Tax (10%)</td>
+                    <td class="total-cell">₹ {{ gst }}</td>
+                </tr>
+{#                <tr class="total-row">#}
+{#                    <td colspan="3" class="total">Discount</td>#}
+{#                    <td class="total-cell">- $5.00</td>#}
+{#                </tr>#}
+                <tr class="total-row">
+                    <td colspan="3" class="total">Total</td>
+                    <td class="total-cell">₹{{ grandtotal_gst }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+{#        <div class="footer-info">#}
+{#            <p>Thank you for your business!</p>#}
+{#            <p>Please come again.</p>#}
+{#        </div>#}
+    </div>
+</div>
+        <br/>
+        {% if bookinfo.Status != 'Accepted' %}
+            <div class="text-center">
+                <a href="/accept_booking" class="btn btn-info">Booking Confimed</a>
+                <a href="/reject_booking" class="btn btn-danger">Booking Reject</a>
+{#                <input type="submit" value="Order" class="btn btn-primary">#}
+            </div>
+        {% else %}
+        {% endif %}
+        </form>
+    </div>
+
+
+</body>
+</html>

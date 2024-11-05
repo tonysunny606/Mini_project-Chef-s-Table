@@ -50,15 +50,17 @@
         <a href="/view_user"><i class="fas fa-users"></i> Manage Users</a>
         <a href="/view_chef"><i class="fas fa-user-tie"></i> Manage Chefs</a>
         <a href="/events"><i class="fas fa-user-tie"></i> Events</a>
-        <a href="#"><i class="fas fa-book"></i> Bookings</a>
-        <a href="#"><i class="fas fa-chart-line"></i> Reports</a>
+{#        <a href="#"><i class="fas fa-book"></i> Bookings</a>#}
+        <a href="/admin_view_report"><i class="fas fa-chart-line"></i> Reports</a>
+        <a href="/complaint_user"><i class="fa-exclamation-triangle"></i> Complaint</a>
+
         <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <div class="content">
         <div class="header">
             <h3>Welcome, Admin</h3>
-            <button class="btn btn-primary"><i class="fas fa-bell"></i> Notifications</button>
+{#            <button class="btn btn-primary"><i class="fas fa-bell"></i> Notifications</button>#}
         </div>
 
         <div class="row">
@@ -89,45 +91,15 @@
             <div class="col-md-3">
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Pending Verifications</h5>
+                        <h5 class="card-title">Verifications</h5>
                         <p class="card-text">10</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Sample Table -->
-{#        <div class="card">#}
-{#            <div class="card-header">#}
-{#                User List#}
-{#            </div>#}
-{#            <div class="card-body">#}
-{#                <table class="table table-striped">#}
-{#                    <thead>#}
-{#                        <tr>#}
-{#                            <th>#</th>#}
-{#                            <th>Name</th>#}
-{#                            <th>Email</th>#}
-{#                            <th>Role</th>#}
-{#                            <th>Actions</th>#}
-{#                        </tr>#}
-{#                    </thead>#}
-{#                    <tbody>#}
-{#                        <tr>#}
-{#                            <td>1</td>#}
-{#                            <td>John Doe</td>#}
-{#                            <td>john@example.com</td>#}
-{#                            <td>User</td>#}
-{#                            <td>#}
-{#                                <button class="btn btn-sm btn-primary">Edit</button>#}
-{#                                <button class="btn btn-sm btn-danger">Delete</button>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <!-- Repeat rows as needed -->#}
-{#                    </tbody>#}
-{#                </table>#}
-{#            </div>#}
-{#        </div>#}
+   <!-- Sample Table -->
+
 
         {% block body %}
         {% endblock %}

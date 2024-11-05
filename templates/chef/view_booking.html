@@ -1,0 +1,87 @@
+{% extends 'chef/cindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-container img {
+            max-width: 100%;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-container h2 {
+            margin: 0 0 10px;
+            color: #343a40;
+        }
+        .profile-detail {
+            margin: 10px 0;
+            color: #495057;
+        }
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/chef_view_booking_search">
+        <div align="center">
+            <br/>
+          <table>
+              <tr>
+                  <td>Search By  date    &nbsp;&nbsp;&nbsp;</td>
+                  <td><input type="date" name="s" class="form-control" placeholder="Search Name" value="{{ s }}" required/></td>
+              </tr>
+          </table>
+            <br/>
+            <br/>
+            <input type="submit" value="Search" class="btn">
+
+        </div>
+    </form>
+    <div class="row">
+        {% for i in data %}
+        <div class="col-sm-4">
+            <div class="profile-container">
+                <img src="{{ i.USER.image.url }}" height="200" width="200" alt="Profile Picture">
+                <h2>{{ i.Name }}</h2>
+                <p class="profile-detail"><strong>USER NAME:</strong> {{ i.USER.name }}</p>
+                <p class="profile-detail"><strong>NO OF BURNERS:</strong> {{ i.number_gas }}</p>
+                <p class="profile-detail"><strong>STATUS:</strong> {{ i.Status }}</p>
+                <p class="profile-detail"><strong>DATE:</strong> {{ i.Date }}</p>
+                <p class="profile-detail"><strong>PRICE:</strong> {{ i.p }}</p>
+                <p class="profile-detail"><strong>NUMBER OF MEMBERS:</strong> {{ i.num_mem }}</p>
+                <p class="profile-detail"><strong>ADRESS:</strong> House No - {{ i.USER.house_number }}<br/>Place - {{ i.USER.place }}<br/>Landmark - {{ i.USER.landmark }}</p>
+                <p class="profile-detail"><strong>PHONE NUMBER:</strong> {{ i.USER.phone}}</p>
+
+                <p class="profile-detail"><a href="/view_dishes_chef/{{ i.id }}" class="btn">View More</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

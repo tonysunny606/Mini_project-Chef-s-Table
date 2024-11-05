@@ -1,0 +1,65 @@
+{% extends 'admin/aindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Chefs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Feedback List</h2>
+        <!-- Loop through each chef and display their details -->
+        {% for chef in data %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+
+                        <img src="{{ chef.BOOKING.CHEF.image.url }}" class="card-img" alt="{{ chef.BOOKING.CHEF.name }}">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ chef.BOOKING.CHEF.name }}</h5>
+                        <p class="card-text"><strong>User Name:</strong> {{ chef.BOOKING.USER.name }}</p>
+                        <p class="card-text"><strong>Feedback:</strong> {{ chef.Complient }}</p>
+                        <p class="card-text"><strong>date:</strong> {{ chef.date_submitted }}</p>
+
+                        <a href="/approve_chef/{{ chef.LOGIN.id}}" class="btn btn-success">Reply</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No Complaints available.</p>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if data.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ data.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ data.number }} of {{ data.paginator.num_pages }}.
+            </span>
+
+            {% if data.has_next %}
+                <a href="?page={{ data.next_page_number }}">next</a>
+                <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

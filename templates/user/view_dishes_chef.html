@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Menu & Bill Receipt</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <style>
+        .card {
+            margin: 20px 0;
+        }
+        .card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover; /* Ensures images have the same size */
+        }
+        .card-body {
+            padding: 10px;
+        }
+        /* Star rating styles */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2em;
+            color: #ddd;
+            cursor: pointer;
+            margin: 0 0.1em;
+        }
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #f7c508;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f7c508;
+        }
+    </style>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .bill-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid #e2e2e2;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td img {
+            border-radius: 8px;
+        }
+
+        .total-row {
+            background-color: #f9f9f9;
+        }
+
+        .total, .total-cell {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .btn-payment {
+            display: block;
+            width: 100%;
+            background-color: #ff5722;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-payment:hover {
+            background-color: #e64a19;
+        }
+
+        .bill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bill-header p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .bill-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .btn-payment {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selected Menu & Bill Receipt</h1>
+
+        <form method="post" action="/Order_dishes">
+            <div class="bill-container">
+                <h2>Bill Receipt</h2>
+                <div class="bill-header">
+                    <p class="date">Date: {{ bookinfo.Date }}</p>
+                    <p class="customer">
+                        Customer: {{ bookinfo.USER.name }} <br>
+                        Chef: {{ bookinfo.CHEF.name }}
+                    </p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Actual Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in bookmore %}
+                        <tr>
+                            <td>
+                                <img src="{{ i.im }}" width="100" height="100" alt="Dish Image">
+                                <br> {{ i.food }}
+                            </td>
+                            <td>{{ i.c }}</td>
+                            <td>₹{{ i.actualprice }}</td>
+                            <td>₹{{ i.total }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="total-row">
+                            <td colspan="3" class="total">Subtotal</td>
+                            <td class="total-cell">₹{{ grandtotal }}</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="3" class="total">Tax (10%)</td>
+                            <td class="total-cell">₹{{ gst }}</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="3" class="total">Total</td>
+                            <td class="total-cell">₹{{ grandtotal_gst }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {% if s %}
+                <div class="footer-info">
+                    <p><b>Contact Number:</b> {{ obs.phone }}</p>
+                    <p><b>Email:</b> {{ obs.email }}</p>
+                </div>
+{#                {% endif %}#}
+    {% if ps == "na" %}
+                <a href="/payment/{{ id }}/{{ grandtotal_gst }}" class="btn-payment">Proceed to Payment</a>
+
+                   {% endif %}
+                    <div align="center">
+{#                    <a href="/feedback/{{ id }}" class="btn-payment">FEEDBACK FOR OUR CHEFS</a>#}
+ <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ratingModal"
+                data-book="{{ id }}">
+            Add Rating
+        </button> &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#complaintModal"
+                data-book="{{ id }}">
+            Add Complaint
+        </button> &nbsp;&nbsp;&nbsp;<a href="/my_booking" class="btn btn-info"
+                >
+           Back
+        </a>
+
+                    </div>
+                    </div>
+            {% endif %}
+
+        </form>
+    </div>
+
+
+<!-- Rating Modal -->
+<div id="ratingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/add_feedback" method="POST">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingModalLabel">Add Feedback and Rating</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="rating">FeedBack:</label>
+                        <div >
+                            <input type="text" name="fbk" class="form-control" required/>
+                        </div>
+                    </div>
+{#                    <input type="hidden" name="book_id" id="ratingBookIdInput">#}
+                </div>
+
+                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="rating">Rating:</label>
+                        <div class="star-rating">
+                            <input type="radio" id="5-stars" name="rating" value="5" />
+                            <label for="5-stars" class="star">&#9733;</label>
+                            <input type="radio" id="4-stars" name="rating" value="4" />
+                            <label for="4-stars" class="star">&#9733;</label>
+                            <input type="radio" id="3-stars" name="rating" value="3" />
+                            <label for="3-stars" class="star">&#9733;</label>
+                            <input type="radio" id="2-stars" name="rating" value="2" />
+                            <label for="2-stars" class="star">&#9733;</label>
+                            <input type="radio" id="1-star" name="rating" value="1" />
+                            <label for="1-star" class="star">&#9733;</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="book_id" id="ratingBookIdInput">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Rating Modal -->
+<div id="complaintModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="complaintModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/add_complaint" method="POST">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingModalLabel">Add Complaint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="rating">Complaint:</label>
+                        <div >
+                            <input type="text" name="comp" class="form-control" required/>
+                        </div>
+                    </div>
+                    <input type="hidden" name="book_id" id="ratingBookIdInput">
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $('#complaintModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var bookId = button.data('book') // Extract book id from data-* attributes
+        var modal = $(this)
+        modal.find('#bookIdInput').val(bookId)
+    });
+
+    $('#ratingModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var bookId = button.data('book') // Extract book id from data-* attributes
+        var modal = $(this)
+        modal.find('#ratingBookIdInput').val(bookId)
+    });
+</script>
+
+</body>
+</html>
